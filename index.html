@@ -6,33 +6,98 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="js/javascript.js"></script>
     <link rel="stylesheet" href="css/styles.css" />
+    <!-- <script src="js/javascript.js"></script> -->
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-    </div>
-    <div id="main">
-        <button class="openbtn" onclick="openNav()">Open Sidebar</button>
-        <h2>Collapsed Sidebar</h2>
-        <p>blah blah blah</p>
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bxs-color'></i>
+                <div class="logo_name">
+                    CodingLab
+                </div>
+            </div>
+            <div class="menu_logo">
+                <i class='bx bx-menu'></i>
+            </div>
+        </div>
+
+        <ul class="nav_list">
+            <li>
+                <a href="#">
+                    <i class="bx bx-search" id="btn"></i>
+                    <input type="text" placeholder="Search...">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-grid-alt' id="btn"></i>
+                    <span class="links_name">User</span>
+                </a>
+                <!-- <span class="tooltip">Dashboard</span> -->
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-chat' id="btn"></i>
+                    <span class="links_name">Messages</span>
+                </a>
+                <!-- <span class="tooltip">Dashboard</span> -->
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-pie-chart-alt-2' id="btn"></i>
+                    <span class="links_name">Analytics</span>
+                </a>
+                <!-- <span class="tooltip">Dashboard</span> -->
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-folder' id="btn"></i>
+                    <span class="links_name">File Manager</span>
+                </a>
+                <!-- <span class="tooltip">Dashboard</span> -->
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-heart' id="btn"></i>
+                    <span class="links_name">Saved</span>
+                </a>
+                <!-- <span class="tooltip">Dashboard</span> -->
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-cog' id="btn"></i>
+                    <span class="links_name">Settings</span>
+                </a>
+                <!-- <span class="tooltip">Dashboard</span> -->
+            </li>
+
+            <!-- <div class="profile_content">
+                    <div class="profile">
+                        <div class="profile_details">
+                            <div class="name_job">
+                                <div class="name">Fred</div>
+                                <div class="job">Web Designer</div>
+                            </div>
+                        </div>
+                    </div>
+                    <i class='bx bx-log-out'></i>
+                </div> -->
+        </ul>
     </div>
     <script>
-        // Open Sidebar
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-        }
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-        }
+        let btn = document.querySelector(".bx-menu");
+        let sidebar = document.querySelector(".sidebar");
+        let searchBtn = document.querySelector(".bx-search");
+
+        btn.onclick = function () {
+            console.log('clicked');
+            sidebar.classList.toggle("active");
+        } 
     </script>
 </body>
 
