@@ -7,76 +7,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/styles.css" />
-    <!-- <script src="js/javascript.js"></script> -->
+    <script src="js/javascript.js"></script>
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
-    <div class="sidebar">
-        <div class="logo_content">
-            <div class="logo">
-                <i class='bx bxs-color'></i>
-                <div class="logo_name">
-                    CodingLab
+    <div class="flex-container">
+        <div class="sidebar">
+            <div class="logo_content">
+                <div class="logo">
+                    <i class='bx bxs-color'></i>
+                    <div class="logo_name">
+                        CodingLab
+                    </div>
+                </div>
+                <div class="menu_logo">
+                    <i class='bx bx-menu'></i>
                 </div>
             </div>
-            <div class="menu_logo">
-                <i class='bx bx-menu'></i>
-            </div>
-        </div>
+            <ul class="nav_list">
+                <li>
+                    <a href="#">
+                        <i class="bx bx-search" id="btn"></i>
+                        <input type="text" placeholder="Search...">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-grid-alt' id="btn"></i>
+                        <span class="links_name">User</span>
+                    </a>
+                    <!-- <span class="tooltip">Dashboard</span> -->
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-chat' id="btn"></i>
+                        <span class="links_name">Messages</span>
+                    </a>
+                    <!-- <span class="tooltip">Dashboard</span> -->
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-pie-chart-alt-2' id="btn"></i>
+                        <span class="links_name">Analytics</span>
+                    </a>
+                    <!-- <span class="tooltip">Dashboard</span> -->
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-folder' id="btn"></i>
+                        <span class="links_name">File Manager</span>
+                    </a>
+                    <!-- <span class="tooltip">Dashboard</span> -->
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-heart' id="btn"></i>
+                        <span class="links_name">Saved</span>
+                    </a>
+                    <!-- <span class="tooltip">Dashboard</span> -->
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-cog' id="btn"></i>
+                        <span class="links_name">Settings</span>
+                    </a>
+                    <!-- <span class="tooltip">Dashboard</span> -->
+                </li>
 
-        <ul class="nav_list">
-            <li>
-                <a href="#">
-                    <i class="bx bx-search" id="btn"></i>
-                    <input type="text" placeholder="Search...">
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-grid-alt' id="btn"></i>
-                    <span class="links_name">User</span>
-                </a>
-                <!-- <span class="tooltip">Dashboard</span> -->
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-chat' id="btn"></i>
-                    <span class="links_name">Messages</span>
-                </a>
-                <!-- <span class="tooltip">Dashboard</span> -->
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-pie-chart-alt-2' id="btn"></i>
-                    <span class="links_name">Analytics</span>
-                </a>
-                <!-- <span class="tooltip">Dashboard</span> -->
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-folder' id="btn"></i>
-                    <span class="links_name">File Manager</span>
-                </a>
-                <!-- <span class="tooltip">Dashboard</span> -->
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-heart' id="btn"></i>
-                    <span class="links_name">Saved</span>
-                </a>
-                <!-- <span class="tooltip">Dashboard</span> -->
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-cog' id="btn"></i>
-                    <span class="links_name">Settings</span>
-                </a>
-                <!-- <span class="tooltip">Dashboard</span> -->
-            </li>
-
-            <!-- <div class="profile_content">
+                <!-- <div class="profile_content">
                     <div class="profile">
                         <div class="profile_details">
                             <div class="name_job">
@@ -87,9 +87,79 @@
                     </div>
                     <i class='bx bx-log-out'></i>
                 </div> -->
-        </ul>
+            </ul>
+        </div>
+        <div class="main-content">
+
+            <div>
+                <h2>Tabs</h2>
+                <p>Tabs are perfect for single page applications.</p>
+            </div>
+
+            <div id="tabs">
+                <button onclick="openCity('London')">London</button>
+                <button onclick="openCity('Paris')">Paris</button>
+                <button onclick="openCity('Tokyo')">Tokyo</button>
+            </div>
+            
+            <div id="tab_content">
+                <div id="London" class="city">
+                    <h2>London</h2>
+                    <p>London is the capital city of England.</p>
+                </div>
+
+                <div id="Paris" class="city" style="display:none">
+                    <h2>Paris</h2>
+                    <p>Paris is the capital of France.</p>
+                </div>
+
+                <div id="Tokyo" class="city" style="display:none">
+                    <h2>Tokyo</h2>
+                    <p>Tokyo is the capital of Japan.</p>
+                </div>
+            </div>
+            <button onclick="create()">+</button>
+            <!-- <button onclick="remove()">-</button> -->
+
+
+        </div>
     </div>
     <script>
+        function openCity(cityName) {
+            var i;
+            var x = document.getElementsByClassName("city");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            document.getElementById(cityName).style.display = "block";
+        }
+        
+        function create() {
+            // Create Button
+            var button = document.createElement("button");
+            button.setAttribute('onclick', "openCity('Rome')");
+            button.innerHTML = "Rome"
+            document.getElementById("tabs").appendChild(button)
+
+            // Create Tab Content
+            var div = document.createElement('div');
+            div.id = 'Rome';
+            div.className = "city"
+            div.style="display:none";
+            var h2 = document.createElement('h2');
+            h2.textContent = 'Rome';
+            div.appendChild(h2)
+            document.getElementById("tab_content").appendChild(div);
+        }
+
+        function get_open_tab() {
+
+        }
+
+        
+
+
+
         let btn = document.querySelector(".bx-menu");
         let sidebar = document.querySelector(".sidebar");
         let searchBtn = document.querySelector(".bx-search");
@@ -97,7 +167,7 @@
         btn.onclick = function () {
             console.log('clicked');
             sidebar.classList.toggle("active");
-        } 
+        }
     </script>
 </body>
 
