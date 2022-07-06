@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <script src="js/javascript.js"></script>
+    <link rel="stylesheet" href="static/styles.css" />
+    <script src="static/javascript.js"></script>
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -96,69 +96,46 @@
                 <p>Tabs are perfect for single page applications.</p>
             </div>
 
+            {% for row in tab_content: %}
             <div id="tabs">
-                <button onclick="openCity('London')">London</button>
+                <form method="post">
+                    <input type="submit" value="{{ row['city'] }}" name="city_name">
+                </form>
+
+                <!-- <button onclick="openCity('{{ tab_content["city"] }}')>London</button>
                 <button onclick="openCity('Paris')">Paris</button>
-                <button onclick="openCity('Tokyo')">Tokyo</button>
+                <button onclick="openCity('Tokyo')">Tokyo</button> -->
             </div>
-            
-            <div id="tab_content">
-                <div id="London" class="city">
-                    <h2>London</h2>
-                    <p>London is the capital city of England.</p>
-                </div>
+            {% endfor %}
 
-                <div id="Paris" class="city" style="display:none">
-                    <h2>Paris</h2>
-                    <p>Paris is the capital of France.</p>
-                </div>
-
-                <div id="Tokyo" class="city" style="display:none">
-                    <h2>Tokyo</h2>
-                    <p>Tokyo is the capital of Japan.</p>
-                </div>
+            {% for row in tab_details: %}
+            <div id="{{ row['city'] }}" class="city">
+                <h2> {{ row['city'] }} </h2>
+                <p> {{ row['content'] }} </p>
             </div>
-            <button onclick="create()">+</button>
-            <!-- <button onclick="remove()">-</button> -->
+            {% endfor %}
+            <!-- <div id="London" class="city">
+                <h2>London</h2>
+                <p>London is the capital city of England.</p>
+            </div>
 
+            <div id="Paris" class="city" style="display:none">
+                <h2>Paris</h2>
+                <p>Paris is the capital of France.</p>
+            </div>
 
+            <div id="Tokyo" class="city" style="display:none">
+                <h2>Tokyo</h2>
+                <p>Tokyo is the capital of Japan.</p>
+            </div> -->
         </div>
+        <!-- <button onclick="create()">+</button> -->
+        <!-- <button onclick="remove()">-</button> -->
+
+
+    </div>
     </div>
     <script>
-        function openCity(cityName) {
-            var i;
-            var x = document.getElementsByClassName("city");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            document.getElementById(cityName).style.display = "block";
-        }
-        
-        function create() {
-            // Create Button
-            var button = document.createElement("button");
-            button.setAttribute('onclick', "openCity('Rome')");
-            button.innerHTML = "Rome"
-            document.getElementById("tabs").appendChild(button)
-
-            // Create Tab Content
-            var div = document.createElement('div');
-            div.id = 'Rome';
-            div.className = "city"
-            div.style="display:none";
-            var h2 = document.createElement('h2');
-            h2.textContent = 'Rome';
-            div.appendChild(h2)
-            document.getElementById("tab_content").appendChild(div);
-        }
-
-        function get_open_tab() {
-
-        }
-
-        
-
-
 
         let btn = document.querySelector(".bx-menu");
         let sidebar = document.querySelector(".sidebar");
