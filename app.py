@@ -22,6 +22,7 @@ tab_content = [
 @app.route("/", methods=['GET', 'POST'])
 def home():
     if request.method == "POST":
+        print(request.form)
         post_data = request.form.to_dict()
         city_name = post_data['city_name']
         data = list(filter(lambda x: x['city'] == city_name, tab_content))
