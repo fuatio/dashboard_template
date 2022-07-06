@@ -97,21 +97,19 @@
             </div>
 
 
-            <div class="container">
+            <!-- <div class="container">
                 <button id="button">Get Data</button>
                 <br>
                 <div id="output"></div>
-            </div>
-            {% for row in tab_content: %}
-            <!-- <div id="tabs">
-                <form method="post">
-                    <input type="button" value="{{ row['city'] }}" name="city_name">
-                </form>
             </div> -->
+            {% for row in tab_content: %}
+            <div id="tabs">
+                <input type="submit" class="cityName" value="{{ row['city'] }}">
+            </div>
             {% endfor %}
 
             {% for row in tab_details: %}
-            <div id="{{ row['city'] }}" class="city">
+            <div>
                 <h2> {{ row['city'] }} </h2>
                 <p> {{ row['content'] }} </p>
             </div>
@@ -122,32 +120,30 @@
     </div>
     </div>
     <script>
-        document.getElementById('button').addEventListener('click', loadData);
-        function loadData() {
-            // Create an XHR Object
+        //var x = document.getElementsByClassName("cityName");
+        //console.log(x)
+        var x = document.querySelectorAll('cityName');
+        console.log(x)
+
+        var tabs = document.querySelectorAll('.cityName')
+        tabs.forEach(tab => {
+            console.log('clicked')
+            tab.addEventListener('click', loadCustomer);
+        })
+
+        //document.querySelectorAll('cityName').addEventListener('click', loadCustomer);
+
+        function loadCustomer(e) {
+            console.log(e.target.value)
             const xhr = new XMLHttpRequest();
 
-            // OPEN
-            xhr.open(method = 'GET', url = 'static/data.txt', async = true);
+            xhr.open(method = 'POST', url = "{{ url_for('home') }}", async = true);
 
-            // Optional - Used for spinners/loaders (for something to display while loading)
-            //xhr.onprogress = function () {
-            //    console.log('READYSTATE', xhr.readyState)
-            //}
-
-            // Including this for error handling
-            xhr.onerror = function () {
-                console.log('Request error...')
-            }
-
-            xhr.onload = function () {
-                if (this.status === 200) {
-                    document.getElementById('output').innerHTML = `<h1>${this.responseText}</h1>`
-                }
-            }
-            xhr.send();
+            var formData = new FormData();
+            formData.append('city', e.target.value)
+            //console.log(formData)
+            xhr.send(formData);
         }
-
 
         let btn = document.querySelector(".bx-menu");
         let sidebar = document.querySelector(".sidebar");

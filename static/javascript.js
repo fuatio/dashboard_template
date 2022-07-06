@@ -24,3 +24,30 @@
 //     div.appendChild(h2)
 //     document.getElementById("tab_content").appendChild(div);
 // }
+
+// XHR Stuff:
+// document.getElementById('button').addEventListener('click', loadData);
+// function loadData() {
+//     // Create an XHR Object
+//     const xhr = new XMLHttpRequest();
+
+//     // OPEN
+//     xhr.open(method = 'GET', url = 'static/data.txt', async = true);
+
+//     // Optional - Used for spinners/loaders (for something to display while loading)
+//     //xhr.onprogress = function () {
+//     //    console.log('READYSTATE', xhr.readyState)
+//     //}
+
+//     // Including this for error handling
+//     xhr.onerror = function () {
+//         console.log('Request error...')
+//     }
+
+//     xhr.onload = function () {
+//         if (this.status === 200) {
+//             document.getElementById('output').innerHTML = `<h1>${this.responseText}</h1>`
+//         }
+//     }
+//     xhr.send();
+// }
