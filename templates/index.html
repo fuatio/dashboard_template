@@ -110,36 +110,56 @@
             <!-- {% for row in tab_names: %} -->
             <div>
                 <h2 id="city-name"></h2>
-                <p id="content"></p>
+                <p id="city-content"></p>
             </div>
             <!-- {% endfor %} -->
 
+
         </div>
 
-    </div>
-    </div>
 
+    </div>
+    </div>
+    <!-- function getCityDetails(e) {
+        fetch('static/data.json')
+            .then(res => res.json())
+            .then(data => {
+                let city_name = e.target.value;
+                let content = data.filter(i => i.city === city_name)[0]['content']
+                document.getElementById('city-name').innerHTML = city_name;
+                document.getElementById('content').innerHTML = content;
+            })
+    } -->
     <script>
 
-        var cities = '{{ tab_names|tojson }}'
+
+        //var cities = '{{ tab_names|tojson }}'
         //console.log(cities)
 
         var tabs = document.querySelectorAll('.cityName')
         tabs.forEach(tab => {
             tab.addEventListener('click', getCityDetails);
         })
-        //document.getElementById('cityName').addEventListener('click', getCityDetails)
 
         function getCityDetails(e) {
-            fetch('static/data.json')
-                .then(res => res.json())
+            let data = new FormData()
+            data.append('city', e.target.value)
+            fetch('{{ url_for("home") }}', {
+                "method": "POST",
+                "body": data
+            })
+                .then(response => response.json())
                 .then(data => {
-                    let city_name = e.target.value;
-                    let content = data.filter(i => i.city === city_name)[0]['content']
-                    document.getElementById('city-name').innerHTML = city_name;
-                    document.getElementById('content').innerHTML = content;
+                    document.getElementById('city-name').innerHTML = data[0]['city'];
+                    document.getElementById('city-content').innerHTML = data[0]['content'];
                 })
         }
+
+
+
+
+
+
 
 
 
