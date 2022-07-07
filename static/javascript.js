@@ -51,3 +51,28 @@
 //     }
 //     xhr.send();
 // }
+
+
+
+// var x = document.querySelectorAll('cityName');
+// console.log(x)
+
+// var tabs = document.querySelectorAll('.cityName')
+// tabs.forEach(tab => {
+//     console.log('clicked')
+//     tab.addEventListener('click', loadCustomer);
+// })
+
+// //document.querySelectorAll('cityName').addEventListener('click', loadCustomer);
+
+// function loadCustomer(e) {
+//     //console.log(e.target.value)
+//     const xhr = new XMLHttpRequest();
+
+//     xhr.open(method = 'POST', url = "{{ url_for('home') }}", async = true);
+
+//     var formData = new FormData(); // data to be sent to server
+//     formData.append('city', e.target.value)
+//     //console.log(formData)
+//     xhr.send(formData);
+// }

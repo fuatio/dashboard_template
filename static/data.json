@@ -1,4 +1,14 @@
-{
-    "city": "Paris",
-    "content": "London is groovy."
-}
+[
+    {
+        "city": "London",
+        "content": "London is cool."
+    },
+    {
+        "city": "Rome",
+        "content": "Rome is sweet."
+    },
+    {
+        "city": "Paris",
+        "content": "London is groovy."
+    }
+]

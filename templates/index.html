@@ -90,7 +90,6 @@
             </ul>
         </div>
         <div class="main-content">
-
             <div>
                 <h2>Tabs</h2>
                 <p>Tabs are perfect for single page applications.</p>
@@ -102,48 +101,53 @@
                 <br>
                 <div id="output"></div>
             </div> -->
-            {% for row in tab_content: %}
+            {% for row in tab_names: %}
             <div id="tabs">
                 <input type="submit" class="cityName" value="{{ row['city'] }}">
             </div>
             {% endfor %}
 
-            {% for row in tab_details: %}
+            <!-- {% for row in tab_names: %} -->
             <div>
-                <h2> {{ row['city'] }} </h2>
-                <p> {{ row['content'] }} </p>
+                <h2 id="city-name"></h2>
+                <p id="content"></p>
             </div>
-            {% endfor %}
+            <!-- {% endfor %} -->
 
         </div>
 
     </div>
     </div>
+
     <script>
-        //var x = document.getElementsByClassName("cityName");
-        //console.log(x)
-        var x = document.querySelectorAll('cityName');
-        console.log(x)
+
+        var cities = '{{ tab_names|tojson }}'
+        //console.log(cities)
 
         var tabs = document.querySelectorAll('.cityName')
         tabs.forEach(tab => {
-            console.log('clicked')
-            tab.addEventListener('click', loadCustomer);
+            tab.addEventListener('click', getCityDetails);
         })
+        //document.getElementById('cityName').addEventListener('click', getCityDetails)
 
-        //document.querySelectorAll('cityName').addEventListener('click', loadCustomer);
-
-        function loadCustomer(e) {
-            console.log(e.target.value)
-            const xhr = new XMLHttpRequest();
-
-            xhr.open(method = 'POST', url = "{{ url_for('home') }}", async = true);
-
-            var formData = new FormData();
-            formData.append('city', e.target.value)
-            //console.log(formData)
-            xhr.send(formData);
+        function getCityDetails(e) {
+            fetch('static/data.json')
+                .then(res => res.json())
+                .then(data => {
+                    let city_name = e.target.value;
+                    let content = data.filter(i => i.city === city_name)[0]['content']
+                    document.getElementById('city-name').innerHTML = city_name;
+                    document.getElementById('content').innerHTML = content;
+                })
         }
+
+
+
+
+
+
+
+
 
         let btn = document.querySelector(".bx-menu");
         let sidebar = document.querySelector(".sidebar");
