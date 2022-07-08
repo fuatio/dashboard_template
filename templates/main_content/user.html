@@ -1,0 +1,30 @@
+<div class="main-content">
+    <div>
+        <h2>Tabs</h2>
+        <p>Tabs are perfect for single page applications.</p>
+    </div>
+
+
+    <!-- <div class="container">
+                <button id="button">Get Data</button>
+                <br>
+                <div id="output"></div>
+            </div> -->
+
+    <div id="tabs">
+        {% for row in tab_names: %}
+        <input type="submit" class="cityName" value="{{ row['city'] }}">
+        {% endfor %}
+    </div>
+    <div>
+        <h2 id="city-name"></h2>
+        <p id="city-content"></p>
+    </div>
+    <br><br>
+    <div>
+        <input type="text" placeholder="Change content" id="change_content">
+        <button type="button" onclick="changeCityContent()">Change Content</button>
+    </div>
+
+</div>
+<script src="static/user.js"></script>
