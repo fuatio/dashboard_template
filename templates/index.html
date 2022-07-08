@@ -101,46 +101,58 @@
                 <br>
                 <div id="output"></div>
             </div> -->
-            {% for row in tab_names: %}
-            <div id="tabs">
-                <input type="submit" class="cityName" value="{{ row['city'] }}">
-            </div>
-            {% endfor %}
 
-            <!-- {% for row in tab_names: %} -->
+            <div id="tabs">
+                {% for row in tab_names: %}
+                <input type="submit" class="cityName" value="{{ row['city'] }}">
+                {% endfor %}
+            </div>
+
+
             <div>
                 <h2 id="city-name"></h2>
                 <p id="city-content"></p>
             </div>
-            <!-- {% endfor %} -->
-
+            <br><br>
+            <div>
+                <input type="text" placeholder="Change content" id="change_content">
+                <button type="button" onclick="changeCityContent()">Change Content</button>
+            </div>
 
         </div>
 
 
     </div>
     </div>
-    <!-- function getCityDetails(e) {
-        fetch('static/data.json')
-            .then(res => res.json())
-            .then(data => {
-                let city_name = e.target.value;
-                let content = data.filter(i => i.city === city_name)[0]['content']
-                document.getElementById('city-name').innerHTML = city_name;
-                document.getElementById('content').innerHTML = content;
-            })
-    } -->
     <script>
 
+        // Submitting change to json file in local file
+        //document.getElementById('form').addEventListener('submit', changeCityContent)
+        var selectedTab = 'London'
+        
+        function changeCityContent() {
+            // get city value that's open right now
+            //current_city_name = document.getElementById('city-name').innerHTML
+            let data = new FormData()
+            data.append('content', document.getElementById('change_content').value)
+            data.append('open_city_tab', selectedTab)
+            fetch('{{ url_for("home") }}', {
+                "method" : "POST",
+                "body" : data
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                document.getElementById('city-content').innerHTML = data[0]['content'];
+            })
+        }
 
-        //var cities = '{{ tab_names|tojson }}'
-        //console.log(cities)
-
+        // Changing Tab Values
         var tabs = document.querySelectorAll('.cityName')
         tabs.forEach(tab => {
             tab.addEventListener('click', getCityDetails);
         })
-
+        
         function getCityDetails(e) {
             let data = new FormData()
             data.append('city', e.target.value)
@@ -153,6 +165,7 @@
                     document.getElementById('city-name').innerHTML = data[0]['city'];
                     document.getElementById('city-content').innerHTML = data[0]['content'];
                 })
+            selectedTab = e.target.value;
         }
 
 
