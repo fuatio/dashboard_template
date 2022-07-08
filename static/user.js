@@ -1,7 +1,7 @@
 
 // Submitting change to json file in local file
-//document.getElementById('form').addEventListener('submit', changeCityContent)
 var selectedTab = 'London'
+var result = 1
 
 function changeCityContent() {
     // get city value that's open right now
@@ -15,7 +15,6 @@ function changeCityContent() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             document.getElementById('city-content').innerHTML = data[0]['content'];
         })
 }
@@ -39,5 +38,7 @@ function getCityDetails(e) {
             document.getElementById('city-content').innerHTML = data[0]['content'];
         })
     selectedTab = e.target.value;
+    result = 1
+    
 }
-console.log(home)
+console.log(result)
