@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="static/navbar.css" />
     <link rel="stylesheet" href="static/sidebar.css" />
     <link rel="stylesheet" href="static/styles.css" />
     <script>
@@ -18,8 +19,11 @@
 <body>
     <div class="flex-container">
         {% include 'sidebar.html' %}
-        {% include 'main_content/user.html' %}
-        {% include 'main_content/test.html' %}
+        <div class="main">
+            {% include 'navbar.html' %}
+            {% include 'main_content/user.html' %}
+            {% include 'main_content/test.html' %}
+        </div>
     </div>
 
     <script>
